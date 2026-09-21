@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FieldServiceApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c5a82d3bf1f910b6748ec4e5f56c0ec1f195aa7a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+af1da0e5824267a8c7ad17814e38ab5ec399b799")]
 [assembly: System.Reflection.AssemblyProductAttribute("FieldServiceApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FieldServiceApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
