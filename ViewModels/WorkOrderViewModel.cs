@@ -12,6 +12,6 @@ public class WorkOrderViewModel
         [Required]
         public Status Status {get;set;}
         [Required]
-        public string AssignedToID {get;set;}
+        public string AssignedToId {get;set;}
         
 }

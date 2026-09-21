@@ -1,0 +1,18 @@
+@model FieldServiceApp.ViewModels.WorkOrderViewModel
+<h6> JOB </h6>
+<form asp-action="Create" asp-controller="WorkOrders">
+  <label for="JobTitle">Job Title:</label><br>
+  <input type="text" asp-for="JobTitle"  placeholder="Job Title"><br>
+  <label for="Description">Description:</label><br>
+  <textarea asp-for="Description" placeholder="What type of duty?"></textarea><br>
+  <label for="Role">Priority:</label><br>
+  <select asp-for="Priority" asp-items="Html.GetEnumSelectList<FieldServiceApp.Models.Priority>()"></select>
+  <br>
+  <label for="Status">Status:</label><br>
+  <select asp-for="Status" asp-items="Html.GetEnumSelectList<FieldServiceApp.Models.Status>()"></select>
+  <br>
+  <label for="AssignedTo">Assigned To:</label><br>
+  <input type="text" asp-for="AssignedToId" placeholder="Enter user ID"> <br>
+  <button type="submit"> Submit</button>
+</form>
+

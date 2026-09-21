@@ -55,24 +55,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/ASP.NET MVC/FieldServiceProject/FieldServiceApp/Views/WorkOrders/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya09yZGVyc1xDcmVhdGUuY3NodG1s
+[C:/ASP.NET MVC/FieldServiceProject/FieldServiceApp/Views/WorkOrder/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya09yZGVyXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/ASP.NET MVC/FieldServiceProject/FieldServiceApp/Views/WorkOrders/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya09yZGVyc1xEZWxldGUuY3NodG1s
+[C:/ASP.NET MVC/FieldServiceProject/FieldServiceApp/Views/WorkOrder/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya09yZGVyXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/ASP.NET MVC/FieldServiceProject/FieldServiceApp/Views/WorkOrders/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya09yZGVyc1xEZXRhaWxzLmNzaHRtbA==
+[C:/ASP.NET MVC/FieldServiceProject/FieldServiceApp/Views/WorkOrder/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya09yZGVyXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/ASP.NET MVC/FieldServiceProject/FieldServiceApp/Views/WorkOrders/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya09yZGVyc1xFZGl0LmNzaHRtbA==
+[C:/ASP.NET MVC/FieldServiceProject/FieldServiceApp/Views/WorkOrder/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya09yZGVyXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/ASP.NET MVC/FieldServiceProject/FieldServiceApp/Views/WorkOrders/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya09yZGVyc1xJbmRleC5jc2h0bWw=
+[C:/ASP.NET MVC/FieldServiceProject/FieldServiceApp/Views/WorkOrder/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya09yZGVyXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/ASP.NET MVC/FieldServiceProject/FieldServiceApp/Views/_ViewImports.cshtml]
