@@ -1,1 +1,12 @@
 @model FieldServiceApp.ViewModels.LoginViewModel
+<h6> Login </h6>
+<form asp-action="Login" asp-controller="Account">
+  <label for="fname">Email:</label><br>
+  <input type="email" asp-for="Email"  placeholder="Enter your email"><br>
+  <label for="lname" >Password:</label><br>
+  <input type="password" asp-for="Password" placeholder="Enter your password">
+  <br>
+  <button type="submit"> Submit</button>
+  <br>
+  <a href="#">Forget Password</a>
+</form>
