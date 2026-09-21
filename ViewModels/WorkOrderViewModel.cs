@@ -11,7 +11,7 @@ public class WorkOrderViewModel
         public Priority Priority {get;set;}
         [Required]
         public Status Status {get;set;}
-        [Required]
-        public string AssignedToId {get;set;}
+      
+        public string? AssignedToId {get;set;}
         
 }
