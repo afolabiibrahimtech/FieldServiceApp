@@ -1,0 +1,20 @@
+@model FieldServiceApp.ViewModels.RegisterViewModel
+<h6> Register </h6>
+<form asp-action="Register" asp-controller="Account">
+  <label for="FirstName">First Name:</label><br>
+  <input type="text" asp-for="FirstName"  placeholder="Enter your first name"><br>
+  <label for="LastName">Last Name:</label><br>
+  <input type="text" asp-for="LastName"  placeholder="Enter your last name"><br>
+  <label for="Email">Email:</label><br>
+  <input type="email" asp-for="Email"  placeholder="Enter your email"><br>
+  <label for="Password" >Password:</label><br>
+  <input type="password" asp-for="Password" placeholder="Enter your password">
+   <label for="ConfirmPassword" >Confirm Password:</label><br>
+  <input type="password" asp-for="ConfirmPassword" placeholder="Enter your password">
+  <br>
+  <label for="Role">Role:</label><br>
+  <select asp-for="Role" asp-items="Html.GetEnumSelectList<FieldServiceApp.Models.UserRole>()"></select>
+  <br> 
+  <button type="submit"> Submit</button>
+  <br>
+</form>
