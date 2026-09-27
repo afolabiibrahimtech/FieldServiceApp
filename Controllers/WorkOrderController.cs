@@ -44,10 +44,45 @@ public class WorkOrderController : Controller
         var workOrders = _context.WorkOrders.ToList();
         return View(workOrders);
     }
-    public IActionResult Edit()
+    [HttpGet]
+public IActionResult Edit(int id)
+{
+    var workOrder = _context.WorkOrders.FirstOrDefault(w => w.ID == id);
+    if (workOrder == null)
     {
-        return View();
+        return NotFound();
     }
+    var model = new WorkOrderViewModel
+    {
+        JobTitle = workOrder.JobTitle,
+        Description = workOrder.Description,
+        Priority = workOrder.Priority,
+        Status = workOrder.Status,
+        AssignedToId = workOrder.AssignedToId
+    };
+    return View(model);
+}
+
+[HttpPost]
+public IActionResult Edit(int id, WorkOrderViewModel model)
+{
+    if (ModelState.IsValid)
+    {
+        var workOrder = _context.WorkOrders.FirstOrDefault(w => w.ID == id);
+        if (workOrder == null)
+        {
+            return NotFound();
+        }
+        workOrder.JobTitle = model.JobTitle;
+        workOrder.Description = model.Description;
+        workOrder.Priority = model.Priority;
+        workOrder.Status = model.Status;
+        workOrder.AssignedToId = model.AssignedToId;
+        _context.SaveChanges();
+        return RedirectToAction("Index");
+    }
+    return View(model);
+}
     public IActionResult Details(int id)
     {
         var workOrder = _context.WorkOrders.FirstOrDefault(w => w.ID == id);
