@@ -48,9 +48,14 @@ public class WorkOrderController : Controller
     {
         return View();
     }
-    public IActionResult Details()
+    public IActionResult Details(int id)
     {
-        return View();
+        var workOrder = _context.WorkOrders.FirstOrDefault(w => w.ID == id);
+        if (workOrder == null)
+        {
+            return NotFound();
+        }
+        return View(workOrder);
     }
 
     public IActionResult Delete()

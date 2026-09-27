@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kx0+hkn7qm4=",
+  "dgSpecHash": "M9VEyX7PH2E=",
   "success": true,
-  "projectFilePath": "C:\\ASP.NET MVC\\FieldServiceProject\\FieldServiceApp\\FieldServiceApp.csproj",
+  "projectFilePath": "C:\\ASP.NET MVC\\FieldServiceProject\\fieldserviceapp\\FieldServiceApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Olamide\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Olamide\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\10.0.12\\microsoft.aspnetcore.identity.entityframeworkcore.10.0.12.nupkg.sha512",

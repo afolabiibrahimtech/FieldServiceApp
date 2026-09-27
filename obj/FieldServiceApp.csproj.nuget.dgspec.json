@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ASP.NET MVC\\FieldServiceProject\\FieldServiceApp\\FieldServiceApp.csproj": {}
+    "C:\\ASP.NET MVC\\FieldServiceProject\\fieldserviceapp\\FieldServiceApp.csproj": {}
   },
   "projects": {
-    "C:\\ASP.NET MVC\\FieldServiceProject\\FieldServiceApp\\FieldServiceApp.csproj": {
+    "C:\\ASP.NET MVC\\FieldServiceProject\\fieldserviceapp\\FieldServiceApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ASP.NET MVC\\FieldServiceProject\\FieldServiceApp\\FieldServiceApp.csproj",
+        "projectUniqueName": "C:\\ASP.NET MVC\\FieldServiceProject\\fieldserviceapp\\FieldServiceApp.csproj",
         "projectName": "FieldServiceApp",
-        "projectPath": "C:\\ASP.NET MVC\\FieldServiceProject\\FieldServiceApp\\FieldServiceApp.csproj",
+        "projectPath": "C:\\ASP.NET MVC\\FieldServiceProject\\fieldserviceapp\\FieldServiceApp.csproj",
         "packagesPath": "C:\\Users\\Olamide\\.nuget\\packages\\",
-        "outputPath": "C:\\ASP.NET MVC\\FieldServiceProject\\FieldServiceApp\\obj\\",
+        "outputPath": "C:\\ASP.NET MVC\\FieldServiceProject\\fieldserviceapp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Olamide\\AppData\\Roaming\\NuGet\\NuGet.Config",

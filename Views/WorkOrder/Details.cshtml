@@ -1,0 +1,12 @@
+@model FieldServiceApp.Models.WorkOrder
+<h3>Work Order Details</h3><br>
+<div>
+    <h5>Job Title: @Model.JobTitle </h5>
+    <h5>Description: @Model.Description </h5>
+    <h5>Priority: @Model.Priority </h5>
+    <h5>Status: @Model.Status </h5>
+    <h5>Assigned To: @Model.AssignedTo </h5>
+    <h5>Date Created: @Model.DateCreated </h5>
+    <a asp-action="Edit" asp-controller="WorkOrder" asp-route-id="@Model.ID">Edit </a> <br>
+    <a asp-action="Index" asp-controller="WorkOrder">Back </a>
+</div>
