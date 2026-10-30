@@ -1,12 +1,19 @@
 @model FieldServiceApp.ViewModels.LoginViewModel
 <h6> Login </h6>
-<form asp-action="Login" asp-controller="Account">
-  <label for="fname">Email:</label><br>
-  <input type="email" asp-for="Email"  placeholder="Enter your email"><br>
-  <label for="lname" >Password:</label><br>
-  <input type="password" asp-for="Password" placeholder="Enter your password">
-  <br>
-  <button type="submit"> Submit</button>
-  <br>
+<div asp-validation-summary="All" style="color:red"></div>
+<form asp-action="Login" asp-controller="Account" method="post">
+  <label for="Email">Email:</label><br>
+  <input type="email" asp-for="Email" placeholder="Enter your email" required>
+  <span asp-validation-for="Email" style="color:red"></span><br>
+
+  <label for="Password">Password:</label><br>
+  <input type="password" asp-for="Password" placeholder="Enter your password" required>
+  <span asp-validation-for="Password" style="color:red"></span><br>
+
+  <button type="submit">Submit</button>
   <a href="#">Forget Password</a>
 </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

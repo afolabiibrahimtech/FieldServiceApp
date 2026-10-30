@@ -1,0 +1,7 @@
+@model FieldServiceApp.Models.WorkOrder
+
+<p>Are you sure you want to delete @Model.JobTitle?</p>
+<form asp-action="Delete" asp-controller="WorkOrder" asp-route-id="@Model.ID" method="post">
+<button type="submit">Yes, Delete</button>
+</form>
+<a asp-action="Index" asp-controller="WorkOrder">Cancel</a>

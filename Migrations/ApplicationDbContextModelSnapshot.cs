@@ -115,6 +115,34 @@ namespace FieldServiceApp.Migrations
                     b.ToTable("WorkOrders");
                 });
 
+            modelBuilder.Entity("FieldServiceApp.Models.WorkOrderRequest", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DateRequested")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("TechnicianId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("WorkOrderId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("TechnicianId");
+
+                    b.HasIndex("WorkOrderId");
+
+                    b.ToTable("WorkOrderRequests");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -250,6 +278,25 @@ namespace FieldServiceApp.Migrations
                         .HasForeignKey("AssignedToId");
 
                     b.Navigation("AssignedTo");
+                });
+
+            modelBuilder.Entity("FieldServiceApp.Models.WorkOrderRequest", b =>
+                {
+                    b.HasOne("FieldServiceApp.Models.ApplicationUser", "Technician")
+                        .WithMany()
+                        .HasForeignKey("TechnicianId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FieldServiceApp.Models.WorkOrder", "WorkOrder")
+                        .WithMany()
+                        .HasForeignKey("WorkOrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Technician");
+
+                    b.Navigation("WorkOrder");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

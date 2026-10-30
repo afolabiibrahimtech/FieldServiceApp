@@ -1,0 +1,63 @@
+@model IEnumerable<FieldServiceApp.Models.WorkOrder>
+@{
+    ViewData["Title"] = "Available Work";
+    var myPending = (List<int>)ViewBag.MyPending;
+}
+
+@functions {
+    string PriorityBadge(FieldServiceApp.Models.Priority p) => p switch
+    {
+        FieldServiceApp.Models.Priority.Low => "bg-secondary",
+        FieldServiceApp.Models.Priority.Medium => "bg-info text-dark",
+        FieldServiceApp.Models.Priority.High => "bg-warning text-dark",
+        FieldServiceApp.Models.Priority.Urgent => "bg-danger",
+        _ => "bg-secondary"
+    };
+}
+
+<h2 class="mb-3">Available Work</h2>
+<p class="text-muted">Open work orders that nobody has been assigned to yet. Request one if you're free.</p>
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Job Title</th>
+                <th>Description</th>
+                <th>Priority</th>
+                <th>Date Created</th>
+                <th class="text-end">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-muted">@item.ID</td>
+                    <td class="fw-semibold">@item.JobTitle</td>
+                    <td>@item.Description</td>
+                    <td><span class="badge @PriorityBadge(item.Priority)">@item.Priority</span></td>
+                    <td>@item.DateCreated.ToString("MMM dd, yyyy")</td>
+                    <td class="text-end">
+                        @if (myPending.Contains(item.ID))
+                        {
+                            <span class="badge bg-secondary">Request pending</span>
+                        }
+                        else
+                        {
+                            <form asp-action="RequestWork" asp-controller="WorkOrderRequest" asp-route-id="@item.ID" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-sm btn-success">Request this job</button>
+                            </form>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@if (!Model.Any())
+{
+    <p class="text-muted text-center">No available work right now. Check back later.</p>
+}

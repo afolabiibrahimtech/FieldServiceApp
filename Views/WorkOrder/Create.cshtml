@@ -1,18 +1,48 @@
 @model FieldServiceApp.ViewModels.WorkOrderViewModel
-<h6> JOB </h6>
-<form asp-action="Create" asp-controller="WorkOrder">
-  <label for="JobTitle">Job Title:</label><br>
-  <input type="text" asp-for="JobTitle"  placeholder="Job Title"><br>
-  <label for="Description">Description:</label><br>
-  <textarea asp-for="Description" placeholder="What type of duty?"></textarea><br>
-  <label for="Role">Priority:</label><br>
-  <select asp-for="Priority" asp-items="Html.GetEnumSelectList<FieldServiceApp.Models.Priority>()"></select>
-  <br>
-  <label for="Status">Status:</label><br>
-  <select asp-for="Status" asp-items="Html.GetEnumSelectList<FieldServiceApp.Models.Status>()"></select>
-  <br>
-  <label for="AssignedTo">Assigned To:</label><br>
-  <input type="text" asp-for="AssignedToId" placeholder="Enter user ID"> <br>
-  <button type="submit"> Submit</button>
+@{
+    ViewData["Title"] = "Create Work Order";
+}
+
+<h3 class="mb-3">Create Work Order</h3>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Create" asp-controller="WorkOrder" method="post" style="max-width:600px">
+    <div class="mb-3">
+        <label asp-for="JobTitle" class="form-label">Job Title</label>
+        <input asp-for="JobTitle" class="form-control" placeholder="e.g. Replace Faulty Pressure Valve" required />
+        <span asp-validation-for="JobTitle" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label">Description</label>
+        <textarea asp-for="Description" class="form-control" rows="4" placeholder="What needs to be done?" required></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label asp-for="Priority" class="form-label">Priority</label>
+            <select asp-for="Priority" class="form-select"
+                    asp-items="Html.GetEnumSelectList<FieldServiceApp.Models.Priority>()"></select>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label asp-for="Status" class="form-label">Status</label>
+            <select asp-for="Status" class="form-select"
+                    asp-items="Html.GetEnumSelectList<FieldServiceApp.Models.Status>()"></select>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="AssignedToId" class="form-label">Assigned To</label>
+        <select asp-for="AssignedToId" class="form-select" asp-items="@((SelectList)ViewBag.Users)">
+            <option value="">-- Unassigned --</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" asp-controller="WorkOrder" class="btn btn-outline-secondary">Cancel</a>
 </form>
 
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

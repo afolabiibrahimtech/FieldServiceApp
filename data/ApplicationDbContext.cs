@@ -12,4 +12,5 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     }
 
     public DbSet<WorkOrder> WorkOrders { get; set; }
+    public DbSet<WorkOrderRequest> WorkOrderRequests { get; set; }
 }
