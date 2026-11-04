@@ -1,0 +1,24 @@
+@model FieldServiceApp.Models.WorkOrder
+@{
+    ViewData["Title"] = "Update Job";
+}
+
+<h3 class="mb-3">Update Job</h3>
+
+<div class="mb-3">
+    <h5 class="mb-1">#@Model.ID @Model.JobTitle</h5>
+    <p class="text-muted mb-0">@Model.Description</p>
+</div>
+
+<form asp-action="SaveNote" asp-controller="WorkOrder" asp-route-id="@Model.ID" method="post" style="max-width:600px">
+    <div class="mb-3">
+        <label for="notes" class="form-label">Notes for the supervisor</label>
+        <textarea id="notes" name="notes" class="form-control" rows="5"
+                  placeholder="What did you do? Do you need parts, tools or more time?">@Model.TechnicianNotes</textarea>
+    </div>
+
+    <button type="submit" class="btn btn-outline-primary">Save note</button>
+    <button type="submit" asp-action="Complete" asp-route-id="@Model.ID" class="btn btn-success"
+            onclick="return confirm('Mark this job as completed?');">Mark as completed</button>
+    <a asp-action="MyJobs" asp-controller="WorkOrder" class="btn btn-outline-secondary">Cancel</a>
+</form>

@@ -93,6 +93,9 @@ namespace FieldServiceApp.Migrations
                     b.Property<string>("AssignedToId")
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime?>("DateCompleted")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("TEXT");
 
@@ -107,6 +110,9 @@ namespace FieldServiceApp.Migrations
 
                     b.Property<int>("Status")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("TechnicianNotes")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("ID");
 

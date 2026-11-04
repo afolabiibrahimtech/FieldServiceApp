@@ -50,16 +50,22 @@
             {
                 <tr>
                     <td class="text-muted">@item.ID</td>
-                    <td class="fw-semibold">@item.JobTitle</td>
+                    <td class="fw-semibold">
+                        @item.JobTitle
+                        @if (!string.IsNullOrWhiteSpace(item.TechnicianNotes))
+                        {
+                            <span class="badge bg-info text-dark ms-1">Note</span>
+                        }
+                    </td>
                     <td><span class="badge @PriorityBadge(item.Priority)">@item.Priority</span></td>
                     <td><span class="badge @StatusBadge(item.Status)">@item.Status</span></td>
                     <td>@(item.AssignedTo?.Email ?? "Unassigned")</td>
                     <td>@item.DateCreated.ToString("MMM dd, yyyy h:mm tt")</td>
                     <td class="text-end">
                         <a asp-action="Details" asp-controller="WorkOrder" asp-route-id="@item.ID" class="btn btn-sm btn-outline-secondary">Details</a>
-                        <a asp-action="Edit" asp-controller="WorkOrder" asp-route-id="@item.ID" class="btn btn-sm btn-outline-primary">Edit</a>
                         @if (canManage)
                         {
+                            <a asp-action="Edit" asp-controller="WorkOrder" asp-route-id="@item.ID" class="btn btn-sm btn-outline-primary">Edit</a>
                             <a asp-action="Delete" asp-controller="WorkOrder" asp-route-id="@item.ID" class="btn btn-sm btn-outline-danger">Delete</a>
                         }
                     </td>

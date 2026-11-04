@@ -119,6 +119,7 @@ public class WorkOrderRequestController : Controller
         }
 
         request.WorkOrder.AssignedToId = request.TechnicianId;
+        request.WorkOrder.Status = Status.InProgress;
         request.Status = RequestStatus.Approved;
 
         // reject everyone else who asked for this job

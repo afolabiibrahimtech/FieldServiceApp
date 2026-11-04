@@ -1,6 +1,10 @@
+@using System.Security.Claims
 @model FieldServiceApp.Models.WorkOrder
 @{
     ViewData["Title"] = "Work Order Details";
+    var canManage = User.IsInRole("Admin") || User.IsInRole("Supervisor");
+    var isMine = Model.AssignedToId != null && Model.AssignedToId == User.FindFirstValue(ClaimTypes.NameIdentifier);
+    var isActive = Model.Status != FieldServiceApp.Models.Status.Completed && Model.Status != FieldServiceApp.Models.Status.Cancelled;
 }
 
 <h3 class="mb-3">Work Order Details</h3>
@@ -23,7 +27,20 @@
 
     <dt class="col-sm-3">Date Created</dt>
     <dd class="col-sm-9">@Model.DateCreated.ToString("MMM dd, yyyy h:mm tt")</dd>
+
+    <dt class="col-sm-3">Technician Notes</dt>
+    <dd class="col-sm-9" style="white-space: pre-line">@(string.IsNullOrWhiteSpace(Model.TechnicianNotes) ? "None" : Model.TechnicianNotes)</dd>
+
+    <dt class="col-sm-3">Date Completed</dt>
+    <dd class="col-sm-9">@(Model.DateCompleted?.ToString("MMM dd, yyyy h:mm tt") ?? "Not completed")</dd>
 </dl>
 
-<a asp-action="Edit" asp-controller="WorkOrder" asp-route-id="@Model.ID" class="btn btn-primary">Edit</a>
+@if (canManage)
+{
+    <a asp-action="Edit" asp-controller="WorkOrder" asp-route-id="@Model.ID" class="btn btn-primary">Edit</a>
+}
+@if (isMine && isActive)
+{
+    <a asp-action="Update" asp-controller="WorkOrder" asp-route-id="@Model.ID" class="btn btn-success">Update job</a>
+}
 <a asp-action="Index" asp-controller="WorkOrder" class="btn btn-outline-secondary">Back</a>

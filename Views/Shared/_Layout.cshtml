@@ -27,6 +27,18 @@
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="WorkOrder" asp-action="Create">New Work Order</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="WorkOrderRequest" asp-action="Pending">Pending Requests</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("Technician"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="WorkOrderRequest" asp-action="Available">Available Work</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="WorkOrder" asp-action="MyJobs">My Jobs</a>
+                            </li>
                         }
                     </ul>
                     <ul class="navbar-nav align-items-lg-center">
@@ -61,6 +73,13 @@
         {
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 @TempData["Success"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @TempData["Error"]
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
