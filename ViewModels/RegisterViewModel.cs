@@ -22,6 +22,5 @@ public class RegisterViewModel
     [Compare("Password")]
     public string ConfirmPassword {get;set;} 
 
-    [Required]
-    public UserRole Role {get;set;} 
+    
 }

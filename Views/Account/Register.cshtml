@@ -23,9 +23,6 @@
   <input type="password" asp-for="ConfirmPassword" placeholder="Re-enter your password" required>
   <span asp-validation-for="ConfirmPassword" style="color:red"></span><br>
 
-  <label for="Role">Role:</label><br>
-  <select asp-for="Role" asp-items="Html.GetEnumSelectList<FieldServiceApp.Models.UserRole>()" required></select>
-  <br>
   <button type="submit">Submit</button>
 </form>
 

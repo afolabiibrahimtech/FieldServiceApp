@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand fw-bold" asp-controller="WorkOrder" asp-action="Index">Field Service</a>
+                <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">Field Service</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
                         aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -86,9 +86,11 @@
         @RenderBody()
     </main>
 
-    <footer class="border-top text-muted py-3 mt-auto">
+    <footer class="bg-dark text-light text-center py-4 mt-auto">
         <div class="container">
-            &copy; 2026 - Field Service Work Order System
+            <div class="fw-semibold">Field Service Work Order System</div>
+            <div class="small text-secondary">Built with ASP.NET Core MVC and Entity Framework Core</div>
+            <div class="small text-secondary mt-1">&copy; 2026 Ibrahim Afolabi</div>
         </div>
     </footer>
 

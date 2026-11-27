@@ -30,11 +30,12 @@ public class AccountController : Controller
     {
         if (ModelState.IsValid)
         {
+            // everyone who signs up starts as a technician, admin promotes later
             var user = new ApplicationUser
             {
                 UserName = model.Email,
                 Email = model.Email,
-                Role = model.Role
+                Role = UserRole.Technician
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -42,7 +43,7 @@ public class AccountController : Controller
             if (result.Succeeded)
             {
                 // Identity role, needed for [Authorize(Roles = ...)]
-                await _userManager.AddToRoleAsync(user, model.Role.ToString());
+                await _userManager.AddToRoleAsync(user, UserRole.Technician.ToString());
 
                 await _signInManager.SignInAsync(user, isPersistent: false);
                 TempData["Success"] = "Account created successfully. Welcome, " + model.FirstName + "!";
