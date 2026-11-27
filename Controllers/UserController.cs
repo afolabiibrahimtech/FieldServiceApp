@@ -22,6 +22,40 @@ public class UserController : Controller
         return View(users);
     }
 
+    [HttpGet]
+    public async Task<IActionResult> EditName(string id)
+    {
+        var user = await _userManager.FindByIdAsync(id);
+        if (user == null)
+        {
+            return NotFound();
+        }
+        return View(user);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> EditName(string id, string firstName, string lastName)
+    {
+        var user = await _userManager.FindByIdAsync(id);
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
+        {
+            TempData["Error"] = "First and last name can't be empty.";
+            return RedirectToAction("EditName", new { id });
+        }
+
+        user.FirstName = firstName.Trim();
+        user.LastName = lastName.Trim();
+        await _userManager.UpdateAsync(user);
+
+        TempData["Success"] = "Name updated for " + user.Email + ".";
+        return RedirectToAction("Index");
+    }
+
     [HttpPost]
     public async Task<IActionResult> ChangeRole(string id, UserRole role)
     {

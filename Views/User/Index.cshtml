@@ -32,6 +32,7 @@
                     {
                         @user.FullName
                     }
+                    <a asp-action="EditName" asp-route-id="@user.Id" class="btn btn-sm btn-outline-secondary ms-2">Edit</a>
                 </td>
                 <td>@user.Email</td>
                 <td><span class="badge bg-secondary">@user.Role</span></td>
