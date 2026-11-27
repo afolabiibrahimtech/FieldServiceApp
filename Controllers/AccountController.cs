@@ -74,6 +74,12 @@ public class AccountController : Controller
                 return RedirectToAction("Index", "WorkOrder");
             }
 
+            if (result.IsLockedOut)
+            {
+                ModelState.AddModelError("", "This account has been disabled. Please contact an admin.");
+                return View(model);
+            }
+
             ModelState.AddModelError("", "Invalid login attempt.");
         }
         return View(model);

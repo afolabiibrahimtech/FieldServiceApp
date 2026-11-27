@@ -13,6 +13,10 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
+// check the user's roles on every request so role changes apply straight away
+builder.Services.Configure<SecurityStampValidatorOptions>(options =>
+    options.ValidationInterval = TimeSpan.Zero);
+
 var app = builder.Build();
 
 // create the roles, and put users who registered before roles existed into theirs
@@ -35,6 +39,29 @@ using (var scope = app.Services.CreateScope())
         if (!await userManager.IsInRoleAsync(user, roleName))
         {
             await userManager.AddToRoleAsync(user, roleName);
+        }
+    }
+
+    // first admin comes from settings so the password isn't in the code
+    var adminEmail = builder.Configuration["SeedAdmin:Email"];
+    var adminPassword = builder.Configuration["SeedAdmin:Password"];
+
+    if (!string.IsNullOrEmpty(adminEmail) && !string.IsNullOrEmpty(adminPassword))
+    {
+        if (await userManager.FindByEmailAsync(adminEmail) == null)
+        {
+            var admin = new ApplicationUser
+            {
+                UserName = adminEmail,
+                Email = adminEmail,
+                Role = UserRole.Admin
+            };
+
+            var result = await userManager.CreateAsync(admin, adminPassword);
+            if (result.Succeeded)
+            {
+                await userManager.AddToRoleAsync(admin, UserRole.Admin.ToString());
+            }
         }
     }
 }

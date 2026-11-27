@@ -2,6 +2,7 @@
 @using FieldServiceApp.Models
 @{
     ViewData["Title"] = "Users";
+    var myId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
 }
 
 <h2 class="mb-3">Users</h2>
@@ -10,48 +11,78 @@
     <input type="text" id="userSearch" class="form-control" placeholder="Search by name or email" />
 </div>
 
-<table class="table table-striped align-middle">
-    <thead class="table-dark">
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Current Role</th>
-            <th>Change Role</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var user in Model)
-        {
-            <tr class="user-row" data-search="@((user.FullName + " " + user.Email).ToLower())">
-                <td>
-                    @if (string.IsNullOrEmpty(user.FullName))
-                    {
-                        <span class="text-muted">(no name yet)</span>
-                    }
-                    else
-                    {
-                        @user.FullName
-                    }
-                    <a asp-action="EditName" asp-route-id="@user.Id" class="btn btn-sm btn-outline-secondary ms-2">Edit</a>
-                </td>
-                <td>@user.Email</td>
-                <td><span class="badge bg-secondary">@user.Role</span></td>
-                <td>
-                    <form asp-action="ChangeRole" method="post" class="d-flex gap-2">
-                        <input type="hidden" name="id" value="@user.Id" />
-                        <select name="role" class="form-select form-select-sm w-auto">
-                            @foreach (var r in Enum.GetValues<UserRole>())
-                            {
-                                <option value="@r" selected="@(user.Role == r)">@r</option>
-                            }
-                        </select>
-                        <button type="submit" class="btn btn-sm btn-primary">Save</button>
-                    </form>
-                </td>
+<div class="table-responsive">
+    <table class="table table-striped align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Current Role</th>
+                <th>Change Role</th>
+                <th class="text-end">Actions</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                var isDisabled = user.LockoutEnd != null && user.LockoutEnd > DateTimeOffset.UtcNow;
+                var isMe = user.Id == myId;
+
+                <tr class="user-row" data-search="@((user.FullName + " " + user.Email).ToLower())">
+                    <td>
+                        @if (string.IsNullOrEmpty(user.FullName))
+                        {
+                            <span class="text-muted">(no name yet)</span>
+                        }
+                        else
+                        {
+                            @user.FullName
+                        }
+                        <a asp-action="EditName" asp-route-id="@user.Id" class="btn btn-sm btn-outline-secondary ms-2">Edit</a>
+                    </td>
+                    <td>@user.Email</td>
+                    <td>
+                        <span class="badge bg-secondary">@user.Role</span>
+                        @if (isDisabled)
+                        {
+                            <span class="badge bg-danger">Disabled</span>
+                        }
+                    </td>
+                    <td>
+                        <form asp-action="ChangeRole" method="post" class="d-flex gap-2">
+                            <input type="hidden" name="id" value="@user.Id" />
+                            <select name="role" class="form-select form-select-sm w-auto">
+                                @foreach (var r in Enum.GetValues<UserRole>())
+                                {
+                                    <option value="@r" selected="@(user.Role == r)">@r</option>
+                                }
+                            </select>
+                            <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                        </form>
+                    </td>
+                    <td class="text-end">
+                        @if (isMe)
+                        {
+                            <span class="text-muted">(you)</span>
+                        }
+                        else
+                        {
+                            <form asp-action="ToggleLogin" asp-route-id="@user.Id" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-sm @(isDisabled ? "btn-success" : "btn-outline-warning")">
+                                    @(isDisabled ? "Enable" : "Disable")
+                                </button>
+                            </form>
+                            <form asp-action="Delete" asp-route-id="@user.Id" method="post" class="d-inline"
+                                  onsubmit="return confirm('Delete this user? This cannot be undone.');">
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                            </form>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
 <p id="noResults" class="text-muted" style="display:none">No users found.</p>
 
