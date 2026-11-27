@@ -11,6 +11,7 @@
             <tr>
                 <th>Work Order</th>
                 <th>Requested By</th>
+                <th>Email</th>
                 <th>Date Requested</th>
                 <th class="text-end">Actions</th>
             </tr>
@@ -20,6 +21,16 @@
             {
                 <tr>
                     <td class="fw-semibold">#@item.WorkOrderId @item.WorkOrder?.JobTitle</td>
+                    <td>
+                        @if (string.IsNullOrEmpty(item.Technician?.FullName))
+                        {
+                            <span class="text-muted">(no name yet)</span>
+                        }
+                        else
+                        {
+                            @item.Technician.FullName
+                        }
+                    </td>
                     <td>@(item.Technician?.Email ?? "Unknown")</td>
                     <td>@item.DateRequested.ToString("MMM dd, yyyy h:mm tt")</td>
                     <td class="text-end">
